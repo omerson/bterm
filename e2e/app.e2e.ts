@@ -49,13 +49,11 @@ describe('bterm launch', function() {
       .browserWindow.isFocused().should.eventually.be.true;
   })
 
-  // it('should minimize the application', () => {
-  //   return this.app.client.click('.minimize').then(() => {
-  //     this.app.client.browserWindow.isMinimized().then((isMinimized) => {
-  //       expect(isMinimized).to.be.equal(true);
-  //     });
-  //   });
-  // })
+  it('should minimize the application', () => {
+    return this.app.client.waitUntilWindowLoaded()
+      .click('.minimize')
+      .browserWindow.isMinimized().should.eventually.be.true;
+  })
 
   it('should have a width', () => {
     return this.app.client.waitUntilWindowLoaded()
@@ -75,38 +73,31 @@ describe('bterm launch', function() {
     return this.app.client.getText('.title').should.eventually.equal('Shell');
   })
 
-  // it('should have focus after click', () => {
-  //   return this.app.client.click('.terminal-instance').then(() => {
-  //     this.app.client.hasFocus('.terminal-instance').then((hasFocus) => {
-  //       expect(hasFocus).to.be.equal(true);
-  //     });
-  //   });
-  // })
+  it('should have focus after click', () => {
+    return this.app.client.waitUntilWindowLoaded()
+      .click('.terminal-instance')
+      .browserWindow.isFocused('.terminal-instance').should.eventually.equal(true);
+  });
 
-  // it('should open the right menu', () => {
-  //   return this.app.client.click('.menu-open').then(() => {
-  //     this.app.client.isVisible('.sidebar-container').then((isVisible) => {
-  //       expect(isVisible).to.be.equal(true);
-  //     });
-  //   });
-  // })
+  it('should open the right menu', () => {
+    return this.app.client.waitUntilWindowLoaded()
+      .click('.menu-open')
+      .browserWindow.isVisible('.sidebar-container').should.eventually.equal(true);
+  })
 
   // it('should have correct text on right menu', () => {
-  //   return this.app.client.click('.menu-open').then(() => {
-  //     this.app.client.getText('.sidebar-container > h1').then((text) => {
-  //       expect(text).to.be.equal('Theme Browser');
-  //     });
-  //   });
-  // })
+  //   return this.app.client.waitUntilWindowLoaded()
+  //     .click('.menu-open')
+  //     .getHTML('.sidebar-container h1')
+  //     .getText('.sidebar-container h1')
+  //     .should.eventually.equal('Theme Browser');
+  // });
 
   // it('should have clicked theme selected', () => {
-  //   return this.app.client.click('.menu-open').then(() => {
-  //     this.app.client.click('.theme-browser > span:nth-child(2)').then(() => {
-  //       this.app.client.isSelected('.theme-browser > span:nth-child(2)').then((isSelected) => {
-  //         expect(isSelected).to.be.equal(false);
-  //       });
-  //     });
-  //   });
+  //   return this.app.client.waitUntilWindowLoaded()
+  //     .click('.menu-open')
+  //     .click('.theme-browser > span:nth-child(2)')
+  //     .isSelected('.theme-browser > span:nth-child(2)').should.eventually.equal(true);
   // })
 
 })
