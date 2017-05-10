@@ -2,6 +2,7 @@ const Application = require('spectron').Application;
 const { resolve } = require('path');
 import * as os from 'os';
 import { expect } from 'chai';
+import * as clone from 'clone';
 import { wait } from './helpers';
 
 describe('bterm launch', function() {
@@ -150,6 +151,26 @@ describe('bterm launch', function() {
       .then(() => wait(1000))
       .then(() => this.app.client.browserWindow.isMaximized())
       .then(result => expect(result).to.be.true);
+  });
+
+  it('should open and close multi window of the app', () => {
+    let appToClose = clone(this.app);
+    let appToMinimize = clone(this.app);
+    return this.app.client.waitUntilWindowLoaded()
+      .then(() => appToClose.start())
+      .then(() => appToClose.client.waitUntilWindowLoaded())
+      .then(() => appToMinimize.start())
+      .then(() => appToMinimize.client.waitUntilWindowLoaded())
+      .then(() => appToClose.stop())
+      .then(() => appToClose.isRunning())
+      .then(result => expect(result).to.be.false)
+      .then(() => appToMinimize.client.click('.minimize'))
+      .then(() => wait(1000))
+      .then(() => appToMinimize.client.browserWindow.isMinimized())
+      .then(result => expect(result).to.be.true)
+      .then(() => appToMinimize.stop())
+      .then(() => appToMinimize.isRunning())
+      .then(result => expect(result).to.be.false);
   });
 })
 
