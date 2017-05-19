@@ -438,7 +438,7 @@ describe('bterm launch', function() {
         .then((result) => console.log('result 4 ' + result))
 
         .then(() => this.app.client.getText('.xterm-rows div:nth-child(4)'))
-        .then((result) => expect(result.replace(/ /g, '')).to.not.equal(''))
+        .then((result) => expect(result.replace(/ /g, '')).to.equal(''))
 
 
         .then(() => this.app.client.getText('.xterm-rows div:nth-child(5)'))
