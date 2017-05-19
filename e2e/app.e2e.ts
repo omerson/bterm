@@ -428,11 +428,29 @@ describe('bterm launch', function() {
         .then(() => console.log('clearTab '))
         .then(() => wait(3000))
         .then(() => this.app.client.getText('.xterm-rows div:nth-child(3)'))
+        .then((result) => console.log('result 3 ' + result))
+
+        .then(() => this.app.client.getText('.xterm-rows div:nth-child(3)'))
         .then((result) => expect(result.replace(/ /g, '')).to.equal(''))
+
+
+        .then(() => this.app.client.getText('.xterm-rows div:nth-child(4)'))
+        .then((result) => console.log('result 4 ' + result))
+
         .then(() => this.app.client.getText('.xterm-rows div:nth-child(4)'))
         .then((result) => expect(result.replace(/ /g, '')).to.not.equal(''))
+
+
+        .then(() => this.app.client.getText('.xterm-rows div:nth-child(5)'))
+        .then((result) => console.log('result 5 ' + result))
+
         .then(() => this.app.client.getText('.xterm-rows div:nth-child(5)'))
         .then((result) => expect(result.replace(/ /g, '')).to.equal(''))
+
+
+        .then(() => this.app.client.getText('.xterm-rows div:nth-child(6)'))
+        .then((result) => console.log('result 6 ' + result))
+
         .then(() => this.app.client.getText('.xterm-rows div:nth-child(6)'))
         .then((result) => expect(result.replace(/ /g, '')).to.equal(''))
     });
