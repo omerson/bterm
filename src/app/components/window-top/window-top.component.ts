@@ -34,7 +34,9 @@ export class WindowTopComponent implements OnInit {
       } else if (event.action === 'closed') {
         this.zone.run(() => {
           this.tabs.splice(event.data, 1);
-          this.tabs[event.data].active = true;
+          if (this.tabs.findIndex(t => t.active) === -1) {
+            this.tabs[this.tabs.length - 1].active = true;
+          }
           setTimeout(() => this.config.setConfig());
         });
       } else if (event.action === 'switch') {
