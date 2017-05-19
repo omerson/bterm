@@ -383,17 +383,47 @@ describe('bterm launch', function() {
         .then(() => this.app.client.keys('dir \r\n'))
         .then(() => wait(2000))
         .then(() => this.app.client.getText('.xterm-rows div:nth-child(1)'))
+        .then((result) => console.log('result 1 ' + result))
+
+        .then(() => this.app.client.getText('.xterm-rows div:nth-child(1)'))
         .then((result) => expect(result.replace(/ /g, '')).to.not.equal(''))
+
+
+        .then(() => this.app.client.getText('.xterm-rows div:nth-child(2)'))
+        .then((result) => console.log('result 2 ' + result))
+
         .then(() => this.app.client.getText('.xterm-rows div:nth-child(2)'))
         .then((result) => expect(result.replace(/ /g, '')).to.not.equal(''))
+
+
+        .then(() => this.app.client.getText('.xterm-rows div:nth-child(3)'))
+        .then((result) => console.log('result 3 ' + result))
+
         .then(() => this.app.client.getText('.xterm-rows div:nth-child(3)'))
         .then((result) => expect(result.replace(/ /g, '')).to.not.equal(''))
+
+
+        .then(() => this.app.client.getText('.xterm-rows div:nth-child(4)'))
+        .then((result) => console.log('result 4 ' + result))
+
         .then(() => this.app.client.getText('.xterm-rows div:nth-child(4)'))
         .then((result) => expect(result.replace(/ /g, '')).to.not.equal(''))
+
+
+        .then(() => this.app.client.getText('.xterm-rows div:nth-child(5)'))
+        .then((result) => console.log('result 5 ' + result))
+
         .then(() => this.app.client.getText('.xterm-rows div:nth-child(5)'))
         .then((result) => expect(result.replace(/ /g, '')).to.not.equal(''))
+
+
+        .then(() => this.app.client.getText('.xterm-rows div:nth-child(6)'))
+        .then((result) => console.log('result 6 ' + result))
+
         .then(() => this.app.client.getText('.xterm-rows div:nth-child(6)'))
         .then((result) => expect(result.replace(/ /g, '')).to.not.equal(''))
+
+
         .then(() => this.app.client.browserWindow.send('clearTab', true))
         .then(() => console.log('clearTab '))
         .then(() => wait(3000))
