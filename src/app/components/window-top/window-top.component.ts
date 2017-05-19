@@ -59,7 +59,8 @@ export class WindowTopComponent implements OnInit {
     });
   }
 
-  switchTab(index: number): void {
+  switchTab(e: MouseEvent, index: number): void {
+    e.preventDefault();
     this.hterm.switchTab(index);
     this.tabs.forEach((tab: Tab) => tab.active = false);
     this.tabs[index].active = true;
@@ -92,6 +93,13 @@ export class WindowTopComponent implements OnInit {
         ipcRenderer.send('close');
       }
     }
+  }
+
+  closeTab(e: MouseEvent, index: number): void {
+    e.preventDefault();
+    e.stopPropagation();
+
+    this.hterm.deleteTabByIndex(index);
   }
 
   minimize(): void { ipcRenderer.send('minimize'); }
